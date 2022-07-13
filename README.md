@@ -24,6 +24,7 @@ http://kubernetes.io/docs
 ## Letting iptables see traffic : kubemaster, kubenode01, kubenode02
 https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
+```
 lsmod | grep br_netfilter
 sudo modprobe br_netfilter
 
@@ -33,6 +34,7 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 
 sudo sysctl --system
+```
 
 ## Install packages
 ```
@@ -63,11 +65,12 @@ apt-get update && apt-get install -y containerd.io
 ```
 
 ## Configure containerd
+```
 mkdir -p /etc/containerd
 
 rm /etc/containerd/config.toml
 systemctl restart containerd
-
+```
 
 ## Set up the Docker daemon
 ```

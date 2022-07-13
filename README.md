@@ -1,18 +1,18 @@
 # k8s-install
 Scripts for installation k8s
 
-# Check vagrant
+## Check vagrant
 ```
 vagrant status
 ```
 
-# Up vagrant and check vagrant
+## Up vagrant and check vagrant
 ```
 vagrant up
 vagrant status
 ```
 
-# Terminal 1,2,3
+## Terminal 1,2,3
 ```
 vagrant ssh kubemaster
 vagrant ssh kubenode01
@@ -21,7 +21,7 @@ vagrant ssh kubenode02
 
 http://kubernetes.io/docs
 
-# Letting iptables see traffic : kubemaster, kubenode01, kubenode02
+## Letting iptables see traffic : kubemaster, kubenode01, kubenode02
 https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
 lsmod | grep br_netfilter
@@ -34,7 +34,7 @@ EOF
 
 sudo sysctl --system
 
-# Install packages
+## Install packages
 ```
 sudo -i
 apt-get update && apt-get install -y \
@@ -46,19 +46,19 @@ apt-transport-https ca-certificates curl software-properties-common gnupg2 lsb
 apt-get update && apt-get install -y lsb-release && apt-get clean all
 ```
 
-# Add docker's official GPG key
+## Add docker's official GPG key
 ```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - 
 ```
 
-# Add the docker apt repository
+## Add the docker apt repository
 ```
 add-apt-repository  \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) \
 stable"
 ```
 
-# Install docker-ce
+## Install docker-ce
 ```
 apt-get update && apt-get install -y \
 containerd.io=1.2.13-1 \
@@ -67,14 +67,14 @@ docker-ce-cli=5:19.03.8~3-0~ubuntu-$(lsb_release -cs)
 apt-get update && apt-get install -y containerd.io
 ```
 
-# Configure containerd
+## Configure containerd
 mkdir -p /etc/containerd
 
 rm /etc/containerd/config.toml
 systemctl restart containerd
 
 
-# Set up the Docker daemon
+## Set up the Docker daemon
 ```
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -90,14 +90,14 @@ EOF
 mkdir -p /etc/systemd/system/docker.service.d
 ```
 
-# Restart Docker
+## Restart Docker
 ```
 systemctl daemon-reload
 systemctl restart docker
 systemctl status docker.service
 ```
 
-# Install kubectl kubeadm
+## Install kubectl kubeadm
 ```
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -109,7 +109,7 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-# Initial Control plan
+## Initial Control plan
 ```
 kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=192.168.56.2
 ```
@@ -188,7 +188,7 @@ kubeadm join 192.168.56.2:6443 --token qv9er5.79qwzomsxu3jnnzh \
 	--discovery-token-ca-cert-hash sha256:8e6abb9cecf714883a8ddc59863989427ee806b1fc46392b51881ce60e11cdbe
 ```
 
-# logout from root user
+## logout from root user
 ```
 logout
 
@@ -199,12 +199,12 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
-# kubenode01, kubenode02
+## kubenode01, kubenode02
 ```
 kubeadm join 192.168.56.2:6443 --token qv9er5.79qwzomsxu3jnnzh \
 --discovery-token-ca-cert-hash sha256:8e6abb9cecf714883a8ddc59863989427ee806b1fc46392b51881ce60e11cdbe
 ```
-# Test on kubemaster
+## Test on kubemaster
 ```
 kubectl run nginx --image=nginx 
 kubectl get pods

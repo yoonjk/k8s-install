@@ -71,8 +71,6 @@ apt-get update && apt-get install -y containerd.io
 
 ## Configure containerd
 ```
-mkdir -p /etc/containerd
-
 rm /etc/containerd/config.toml
 systemctl restart containerd
 ```

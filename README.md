@@ -39,11 +39,6 @@ sudo sysctl --system
 sudo -i
 apt-get update && apt-get install -y \
 apt-transport-https ca-certificates curl software-properties-common gnupg2 lsb
-
-
-:
-
-apt-get update && apt-get install -y lsb-release && apt-get clean all
 ```
 
 ## Add docker's official GPG key
@@ -109,12 +104,16 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
-## Initial Control plan
+## Initial Only Control plan
 ```
+ifconfig enp0s8
+
 kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=192.168.56.2
 ```
 
 ```
+====> Results <========
+
 [init] Using Kubernetes version: v1.24.2
 [preflight] Running pre-flight checks
 [preflight] Pulling images required for setting up a Kubernetes cluster

@@ -1,6 +1,11 @@
 # k8s-install
 Scripts for installation k8s
 
+## Change directory
+```
+cd  certified-k8s-course
+```
+
 ## Check vagrant
 ```
 vagrant status

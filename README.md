@@ -1,9 +1,12 @@
 # k8s-install
 Scripts for installation k8s
 
-## Clone git repository
+## Clone git repository and change directory
 git clone [https://github.com/kodekloudhub/certified-kubernetes-administrator-course](https://github.com/kodekloudhub/certified-kubernetes-administrator-course)
 
+```bash
+cd  certified-kubernetes-administrator-course
+```
 ## Check vagrant
 ```
 vagrant status

@@ -3,7 +3,7 @@ Scripts for installation k8s
 
 ## Change directory
 ```
-cd  certified-k8s-course
+git clone https://github.com/kodekloudhub/certified-kubernetes-administrator-course
 ```
 
 ## Check vagrant

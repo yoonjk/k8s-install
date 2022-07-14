@@ -2,7 +2,7 @@
 Scripts for installation k8s
 
 ## Clone git repository
-```
+```bash
 git clone https://github.com/kodekloudhub/certified-kubernetes-administrator-course
 ```
 
